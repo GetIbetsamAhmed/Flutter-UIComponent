@@ -1,16 +1,95 @@
-# tickect_ui
+# Tickect List User Interface
+<img width="303" alt="TicketUI" src="https://user-images.githubusercontent.com/111435568/187642641-aceb0dda-c6b4-41cb-b0ee-cd82708b0dff.png">
 
-A new Flutter project.
+Using custom painter in flutter we can creat a custom design backgrounds : 
+```ruby
+class TicketPainter extends CustomPainter {
+  final Color borderColor;
+  final Color bgColor;
 
-## Getting Started
+  static const _cornerGap = 20.0;
+  static const _cutoutRadius = 20.0;
+  static const _cutoutDiameter = _cutoutRadius * 2;
 
-This project is a starting point for a Flutter application.
+  TicketPainter({required this.bgColor, required this.borderColor});
 
-A few resources to get you started if this is your first Flutter project:
+  @override
+  void paint(Canvas canvas, Size size) {
+    final maxWidth = size.width;
+    final maxHeight = size.height;
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    final cutoutStartPos = maxHeight - maxHeight * 0.2;
+    final leftCutoutStartY = cutoutStartPos;
+    final rightCutoutStartY = cutoutStartPos - _cutoutDiameter;
+    final dottedLineY = cutoutStartPos - _cutoutRadius;
+    double dottedLineStartX = _cutoutRadius;
+    final double dottedLineEndX = maxWidth - _cutoutRadius;
+    const double dashWidth = 8.5;
+    const double dashSpace = 4;
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    final paintBg = Paint()
+      ..style = PaintingStyle.fill
+      ..strokeCap = StrokeCap.round
+      ..color = bgColor;
+
+    final paintBorder = Paint()
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..color = borderColor;
+
+    final paintDottedLine = Paint()
+      ..color = borderColor.withOpacity(0.5)
+      ..strokeWidth = 1.2;
+
+    var path = Path();
+
+    path.moveTo(_cornerGap, 0);
+    path.lineTo(maxWidth - _cornerGap, 0);
+    _drawCornerArc(path, maxWidth, _cornerGap);
+    path.lineTo(maxWidth, rightCutoutStartY);
+    _drawCutout(path, maxWidth, rightCutoutStartY + _cutoutDiameter);
+    path.lineTo(maxWidth, maxHeight - _cornerGap);
+    _drawCornerArc(path, maxWidth - _cornerGap, maxHeight);
+    path.lineTo(_cornerGap, maxHeight);
+    _drawCornerArc(path, 0, maxHeight - _cornerGap);
+    path.lineTo(0, leftCutoutStartY);
+    _drawCutout(path, 0.0, leftCutoutStartY - _cutoutDiameter);
+    path.lineTo(0, _cornerGap);
+    _drawCornerArc(path, _cornerGap, 0);
+
+    canvas.drawPath(path, paintBg);
+    canvas.drawPath(path, paintBorder);
+
+    while (dottedLineStartX < dottedLineEndX) {
+      canvas.drawLine(
+        Offset(dottedLineStartX, dottedLineY),
+        Offset(dottedLineStartX + dashWidth, dottedLineY),
+        paintDottedLine,
+      );
+      dottedLineStartX += dashWidth + dashSpace;
+    }
+  }
+
+  _drawCutout(Path path, double startX, double endY) {
+    path.arcToPoint(
+      Offset(startX, endY),
+      radius: const Radius.circular(_cutoutRadius),
+      clockwise: false,
+    );
+  }
+
+  _drawCornerArc(Path path, double endPointX, double endPointY) {
+    path.arcToPoint(
+      Offset(endPointX, endPointY),
+      radius: const Radius.circular(_cornerGap),
+    );
+  }
+
+  @override
+  bool shouldRepaint(TicketPainter oldDelegate) => false;
+
+  @override
+  bool shouldRebuildSemantics(TicketPainter oldDelegate) => false;
+}
+```
