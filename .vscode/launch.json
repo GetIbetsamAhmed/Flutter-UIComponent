@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "card_swipe",
+            "cwd": "card_swipe",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "card_swipe (profile mode)",
+            "cwd": "card_swipe",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "card_swipe (release mode)",
+            "cwd": "card_swipe",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "tickect_ui",
+            "cwd": "tickect_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tickect_ui (profile mode)",
+            "cwd": "tickect_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "tickect_ui (release mode)",
+            "cwd": "tickect_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
