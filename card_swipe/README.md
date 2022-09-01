@@ -1,16 +1,3 @@
-# card_swipe
+# Card Swiper User Interface 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![cardswipe](https://user-images.githubusercontent.com/111435568/187919311-6f7f28ea-e85e-490b-923a-01f314f60fc6.jpeg)
