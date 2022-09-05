@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../bottom_navigation/bottom_navy_bar.dart';
+import '../salmon_navigation/salmon_navigation.dart';
 
 class EntryPoint extends StatelessWidget {
   const EntryPoint({Key? key}) : super(key: key);
@@ -50,16 +51,35 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: const EdgeInsets.all(25),
               child: FlatButton(
                 child: const Text(
-                  "Bottom NavyBar",
+                  "Bottom NavBar",
                   style: TextStyle(fontSize: 20.0),
                 ),
                 color: Colors.cyan,
-                textColor: Colors.black,
+                textColor: Colors.white,
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => BottomNavBar(),
+                      ));
+                },
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: FlatButton(
+                child: const Text(
+                  "Salmon NavBar",
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                color: Colors.cyan,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SalmonNavbar(),
                       ));
                 },
               ),
