@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../bottom_navigation/bottom_navy_bar.dart';
 import '../curved_navigation_bar/curved_navigation_bar.dart';
+import '../dot_navigation_bar/dot_navigation_bar.dart';
 import '../salmon_navigation/salmon_navigation.dart';
 
 class EntryPoint extends StatelessWidget {
@@ -100,6 +101,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const CurvedBottomNavBar(),
+                      ));
+                },
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: FlatButton(
+                child: const Text(
+                  "Dots Nav Bar",
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                color: Colors.cyan,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DotBottomNav(),
                       ));
                 },
               ),
